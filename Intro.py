@@ -57,11 +57,14 @@ if button2:
     #    url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     
     # get access token
-#     url="accounts.google.com/o/oauth2/token&grant_type=authorization_code&client_id="+clientId+"&redirect_uri="+redirectUri+
-    url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
-    r = requests.get(url,params={'access_token': access_token})
-    st.write(r.status_code)
+    url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
+    r = requests.get(url)
     st.write(r.content)
+
+#     url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
+#     r = requests.get(url,params={'access_token': access_token})
+#     st.write(r.status_code)
+#     st.write(r.content)
 
 
     #     service = build('people', 'v1', credentials=credentials)
