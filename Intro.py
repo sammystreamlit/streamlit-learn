@@ -65,7 +65,7 @@ def get_email():
 def check_if_logged_in():
     if st.experimental_get_query_params():
         state.logged_in = True
-     else:
+    else:
         state.logged_in = False
 
 # st.sidebar.image("logo.png", width=290)
