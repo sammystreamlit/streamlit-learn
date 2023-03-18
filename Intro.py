@@ -37,6 +37,7 @@ redirectUri = st.secrets['REDIRECT_URI']
 
 mt = Elements()
 
+@st.cache_resource
 def get_email():
     code = st.experimental_get_query_params()["code"][0]
 
