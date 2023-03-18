@@ -56,7 +56,8 @@ if button:
       #  st.session_state.my_token_input = code
     #     st.write(code)
 #     api_url = "https://www.googleapis.com/oauth2/v2/userinfo&access_token="
-    api_url = "https://www.googleapis.com/drive/v3/about&access_token="
+    #api_url = "https://www.googleapis.com/drive/v3/about&access_token="
+    api_url="https://people.googleapis.com/v1/{resourceName=people/*}&personFields=emailAddresses&access_token="
     api_url = api_url+code
     response = requests.get(api_url)
     st.write(response)
