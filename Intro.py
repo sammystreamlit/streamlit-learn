@@ -69,6 +69,7 @@ def check_if_logged_in():
 
 def sidebar():
     with st.sidebar:
+        st.title("Streamlit 101 💡")
         check_if_logged_in()
         if not state.logged_in:
             mt.button(
