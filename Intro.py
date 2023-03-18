@@ -59,8 +59,9 @@ if button:
     api_url = "https://www.googleapis.com/drive/v3/about&access_token="
     api_url = api_url+code
     response = requests.get(api_url)
-    st.write(response.status_code)
     st.write(response)
+    st.write(response.status_code)
+    st.write(response.body)
 #     if response.status_code != 204:
 #         st.write(response.json())
 #     else: 
