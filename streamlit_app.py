@@ -3,64 +3,50 @@ import asyncio
 import streamlit as st
 import pandas as pd
 
-# imports for search console libraries
-import searchconsole
 from apiclient import discovery
 from google_auth_oauthlib.flow import Flow
 
-# imports for aggrid
-from st_aggrid import AgGrid
-from st_aggrid import AgGrid
-from st_aggrid.grid_options_builder import GridOptionsBuilder
-from st_aggrid.shared import JsCode
-from st_aggrid import GridUpdateMode, DataReturnMode
-
-# all other imports
 import os
 from streamlit_elements import Elements
 
 ###############################################################################
 
-# The code below is for the layout of the page
-if "widen" not in st.session_state:
-    layout = "centered"
-else:
-    layout = "wide" if st.session_state.widen else "centered"
+# # The code below is for the layout of the page
+# if "widen" not in st.session_state:
+#     layout = "centered"
+# else:
+#     layout = "wide" if st.session_state.widen else "centered"
 
-st.set_page_config(
-    layout=layout, page_title="Google Search Console Connector", page_icon="🔌"
-)
+# st.set_page_config(
+#     layout=layout, page_title="Google Search Console Connector", page_icon="🔌"
+# )
 
 ###############################################################################
 
 # row limit
-RowCap = 25000
+# RowCap = 25000
 
 
 ###############################################################################
 
-tab1, tab2 = st.tabs(["Main", "About"])
+st.sidebar.image("logo.png", width=290)
 
-with tab1:
+st.sidebar.markdown("")
 
-    st.sidebar.image("logo.png", width=290)
+st.write("")
 
-    st.sidebar.markdown("")
+# Convert secrets from the TOML file to strings
+clientId = st.secrets['GOOGLE_CLIENT_ID']
+clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
+redirectUri = st.secrets['REDIRECT_URI']
 
-    st.write("")
+st.markdown("")
 
-    # Convert secrets from the TOML file to strings
-    clientId = st.secrets['GOOGLE_CLIENT_ID']
-    clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
-    redirectUri = st.secrets['REDIRECT_URI']
+if "my_token_input" not in st.session_state:
+    st.session_state["my_token_input"] = ""
 
-    st.markdown("")
-
-    if "my_token_input" not in st.session_state:
-        st.session_state["my_token_input"] = ""
-
-    if "my_token_received" not in st.session_state:
-        st.session_state["my_token_received"] = False
+if "my_token_received" not in st.session_state:
+    st.session_state["my_token_received"] = False
 
 #     def charly_form_callback():
 #         # st.write(st.session_state.my_token_input)
@@ -70,44 +56,44 @@ with tab1:
 
 #     with st.sidebar.form(key="my_form"):
 
-    st.markdown("")
+st.markdown("")
 
-    mt = Elements()
+mt = Elements()
 
-    mt.button(
-        "Sign-in with Google",
-        target="_blank",
-        size="large",
-        variant="contained",
-        start_icon=mt.icons.exit_to_app,
-        onclick="none",
-        style={"color": "#FFFFFF", "background": "#FF4B4B"},
-        href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
-        + clientId
-        + "&redirect_uri="
-        + redirectUri
-        + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
-    )
+mt.button(
+    "Sign-in with Google",
+    target="_blank",
+    size="large",
+    variant="contained",
+    start_icon=mt.icons.exit_to_app,
+    onclick="none",
+    style={"color": "#FFFFFF", "background": "#FF4B4B"},
+    href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
+    + clientId
+    + "&redirect_uri="
+    + redirectUri
+    + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
+)
 
-    mt.show(key="687")
+mt.show(key="687")
 
-    credentials = {
-        "installed": {
-            "client_id": clientId,
-            "client_secret": clientSecret,
-            "redirect_uris": [],
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://accounts.google.com/o/oauth2/token",
-        }
+credentials = {
+    "installed": {
+        "client_id": clientId,
+        "client_secret": clientSecret,
+        "redirect_uris": [],
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://accounts.google.com/o/oauth2/token",
     }
+}
 
-    flow = Flow.from_client_config(
-        credentials,
-        scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
-        redirect_uri=redirectUri,
-    )
+flow = Flow.from_client_config(
+    credentials,
+    scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
+    redirect_uri=redirectUri,
+)
 
-    auth_url, _ = flow.authorization_url(prompt="consent")
+auth_url, _ = flow.authorization_url(prompt="consent")
 
 #         submit_button = st.form_submit_button(
 #             label="Access GSC API", on_click=charly_form_callback
