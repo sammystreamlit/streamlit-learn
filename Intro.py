@@ -20,11 +20,6 @@ clientId = st.secrets['GOOGLE_CLIENT_ID']
 clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
 redirectUri = st.secrets['REDIRECT_URI']
 
-# def login():
-#     st.write("called login fn")
-
-
-
 # # The code below is for the layout of the page
 # if "widen" not in st.session_state:
 #     layout = "centered"
