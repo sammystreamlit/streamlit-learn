@@ -53,12 +53,20 @@ if button2:
     # If modifying these scopes, delete the file token.json.
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     code = st.experimental_get_query_params()["code"][0]
-    credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
+#     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
     #    url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     
     # get access token
-    url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
-    r = requests.post(url)
+#     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
+    
+    body = {
+        "code": code,
+        "grant_type": "authorization_code"
+        "client_id": clientId,
+        "client_secret": clientSecret,
+        "redirect_uri": redirectUri
+    }
+    r = requests.post(url, json=body)
     st.write(r.content)
 
 #     url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
