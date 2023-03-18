@@ -2,12 +2,11 @@
 import asyncio
 import streamlit as st
 import pandas as pd
-
 from apiclient import discovery
 from google_auth_oauthlib.flow import Flow
-
 import os
 from streamlit_elements import Elements
+import requests
 
 # # The code below is for the layout of the page
 # if "widen" not in st.session_state:
@@ -22,13 +21,10 @@ from streamlit_elements import Elements
 # st.sidebar.image("logo.png", width=290)
 
 st.sidebar.markdown("")
-
 st.write("")
-
 clientId = st.secrets['GOOGLE_CLIENT_ID']
 clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
 redirectUri = st.secrets['REDIRECT_URI']
-
 st.markdown("")
 
 # if "my_token_input" not in st.session_state:
@@ -55,6 +51,11 @@ def login():
     #st.session_state.my_token_received = True
     code = st.experimental_get_query_params()["code"][0]
       #  st.session_state.my_token_input = code
+#     st.write(code)
+    api_url = "https://www.googleapis.com/oauth2/v2/userinfo"
+    response = requests.post(api_url)
+    st.write(response.json())
+
 
 mt.button(
     "Sign-in with Google",
