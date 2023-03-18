@@ -54,22 +54,20 @@ if button2:
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     access_token = st.experimental_get_query_params()["code"][0]
     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret, access_type=offline, prompt=consent)
-    service = build('people', 'v1', credentials=credentials)
-    results = service.people().connections().list(
-        resourceName='people/me',
-        pageSize=10,
-        personFields='names,emailAddresses').execute()
-    connections = results.get('connections', [])
+#     service = build('people', 'v1', credentials=credentials)
+#     results = service.people().connections().list(
+#         resourceName='people/me',
+#         pageSize=10,
+#         personFields='names,emailAddresses').execute()
+#     connections = results.get('connections', [])
 
-    for person in connections:
-        names = person.get('names', [])
-        if names:
-            name = names[0].get('displayName')
-            st.write(name)
-    #     r = requests.get(
-#         'https://www.googleapis.com/oauth2/v3/userinfo',
-#         params={'access_token': access_token})
-#     st.write(r.json())
+#     for person in connections:
+#         names = person.get('names', [])
+#         if names:
+#             name = names[0].get('displayName')
+#             st.write(name)
+    r = requests.get('https://www.googleapis.com/oauth2/v3/userinfo',params={'access_token': access_token, access_type:offline, prompt:consent})
+    st.write(r.json())
 #     results = service.people()
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
 #     st.write(connections)
