@@ -58,8 +58,9 @@ if button2:
 #     results = service.people()
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
 #     st.write(connections)
-    
-    people = service.people().connections().list('people/me', personFields='names,emailAddresses')
+    people = service.people().connections().list('people/me')
+
+#     people = service.people().connections().list('people/me', personFields='names,emailAddresses')
 #     st.write(people)
 
 
