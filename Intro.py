@@ -45,13 +45,15 @@ st.markdown("")
 
 mt = Elements()
 
-def login():
+button = st.button("get email")
+if button:
+# def login():
     st.write("tried to log in")
             # st.write(st.session_state.my_token_input)
     #st.session_state.my_token_received = True
     code = st.experimental_get_query_params()["code"][0]
       #  st.session_state.my_token_input = code
-#     st.write(code)
+    #     st.write(code)
     api_url = "https://www.googleapis.com/oauth2/v2/userinfo"
     response = requests.post(api_url)
     st.write(response.json())
