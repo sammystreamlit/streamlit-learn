@@ -82,9 +82,6 @@ if button2:
     # except HttpError as err:
     #     print(err)
 
-
-
-
 st.sidebar.markdown("")
 st.write("")
 clientId = st.secrets['GOOGLE_CLIENT_ID']
@@ -106,26 +103,26 @@ st.markdown("")
 
 #     with st.sidebar.form(key="my_form"):
 
-st.markdown("")
+# st.markdown("")
 
-mt = Elements()
+# mt = Elements()
 
-button = st.button("get email")
-if button:
-# def login():
-    st.write("tried to log in")
-            # st.write(st.session_state.my_token_input)
-    #st.session_state.my_token_received = True
-    code = st.experimental_get_query_params()["code"][0]
-      #  st.session_state.my_token_input = code
-    #     st.write(code)
-#     api_url = "https://www.googleapis.com/oauth2/v2/userinfo&access_token="
-    #api_url = "https://www.googleapis.com/drive/v3/about&access_token="
-    api_url="https://people.googleapis.com/v1/{resourceName=people/*}&personFields=emailAddresses&access_token="
-    api_url = api_url+code
-    response = requests.get(api_url)
-    st.write(response.content)
-    st.write(response.status_code)
+# button = st.button("get email")
+# if button:
+# # def login():
+#     st.write("tried to log in")
+#             # st.write(st.session_state.my_token_input)
+#     #st.session_state.my_token_received = True
+#     code = st.experimental_get_query_params()["code"][0]
+#       #  st.session_state.my_token_input = code
+#     #     st.write(code)
+# #     api_url = "https://www.googleapis.com/oauth2/v2/userinfo&access_token="
+#     #api_url = "https://www.googleapis.com/drive/v3/about&access_token="
+#     api_url="https://people.googleapis.com/v1/{resourceName=people/*}&personFields=emailAddresses&access_token="
+#     api_url = api_url+code
+#     response = requests.get(api_url)
+#     st.write(response.content)
+#     st.write(response.status_code)
 #     st.write(response.json())
 #     if response.status_code != 204:
 #         st.write(response.json())
