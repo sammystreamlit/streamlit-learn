@@ -7,7 +7,8 @@ state=st.session_state
 
 with st.sidebar:
     if state.logged_in and state.email:
-        st.write("You're currently logged in as "+state.email)
+        logged_in_msg = "You're currently logged in as "+state.email
+        st.success(logged_in_msg, icon="✅")
     else:
         mt.button(
             "Sign-in with Google",
