@@ -145,8 +145,8 @@ def get_user_info(credentials):
     user_info = None
     try:
         user_info = user_info_service.userinfo().get().execute()
-    except errors.HttpError, e:
-        logging.error('An error occurred: %s', e)
+    except:
+        logging.error('An error occurred')
     if user_info and user_info.get('id'):
         return user_info
     else:
