@@ -83,8 +83,8 @@ mt.button(
     + "&redirect_uri="
     + redirectUri
 #     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
-#     + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
-    + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
+    + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
+#     + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
 
 )
 
