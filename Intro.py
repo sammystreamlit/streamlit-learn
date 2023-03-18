@@ -104,13 +104,28 @@ def sidebar():
                 variant="contained",
     #             start_icon=mt.icons.exit_to_app,
                 onclick="login()",
-                style={"color": "#FFFFFF", "background": "#FF4B4B"},
+                style={"color": "#FFFFFF", "background": "#FF4B4B", "text-transform": "unset !important";},
                 href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
                 + clientId
                 + "&redirect_uri="
                 + redirectUri
                 + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
             )
+            
+#             mt.button(
+#                 "Log in with Google",
+#                 target="_blank",
+#                 size="large",
+#                 variant="contained",
+#     #             start_icon=mt.icons.exit_to_app,
+#                 onclick="login()",
+#                 style={"color": "#FFFFFF", "background": "#FF4B4B"},
+#                 href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
+#                 + clientId
+#                 + "&redirect_uri="
+#                 + redirectUri
+#                 + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
+#             )
 
             mt.show(key="687")
 
