@@ -58,6 +58,7 @@ if button:
     api_url = api_url+code
     response = requests.post(api_url)
     st.write(response.status_code)
+    st.write(response)
 #     if response.status_code != 204:
 #         st.write(response.json())
 #     else: 
