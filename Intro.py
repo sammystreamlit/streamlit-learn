@@ -68,9 +68,36 @@ if button2:
     }
     r = requests.post(url, json=body)
 #     st.write(r.content)
-    response = str(r.content)
-    token = response[0]
-    st.write(token)
+    response = (r.content['access_token'])
+#     token = response[0]
+    st.write(response)
+    
+#     credentials = {
+#     "installed": {
+#     "client_id": clientId,
+#     "client_secret": clientSecret,
+#     "redirect_uris": [],
+#     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+#     "token_uri": "https://accounts.google.com/o/oauth2/token",
+#     }
+#     }
+
+#         flow = Flow.from_client_config(
+#             credentials,
+#             scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
+#             redirect_uri=redirectUri,
+#         )
+
+    
+    
+#    flow.fetch_token(code=token)
+#         credentials = flow.credentials
+#         service = discovery.build(
+#             serviceName="webmasters",
+#             version="v3",
+#             credentials=credentials,
+#             cache_discovery=False,
+        )
 #     st.write(str(r.content))
 
 #     url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
