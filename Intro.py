@@ -213,45 +213,48 @@ creds = {
 #     else:
 #         raise NoUserIdException()
 with st.sidebar:
-    mt.button(
-        "Sign-in with Google",
-        target="_blank",
-        size="large",
-        variant="contained",
-        start_icon=mt.icons.exit_to_app,
-        onclick="login()",
-        style={"color": "#FFFFFF", "background": "#FF4B4B"},
-        href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
-        + clientId
-        + "&redirect_uri="
-        + redirectUri
-    #     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
-        + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
-    #     + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
-
-    )
-
-    mt.show(key="687")
-
-    credentials = {
-        "installed": {
-            "client_id": clientId,
-            "client_secret": clientSecret,
-            "redirect_uris": redirectUri,
-            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-            "token_uri": "https://accounts.google.com/o/oauth2/token",
-        }
-    }
-
-    flow = Flow.from_client_config(
-        credentials,
-        scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
-        redirect_uri=redirectUri,
-    )
-
-    auth_url, _ = flow.authorization_url(prompt="consent")
-    
     if st.experimental_get_query_params():
+        state.logged_in = True
+    if not state.logged_in:
+        mt.button(
+            "Sign-in with Google",
+            target="_blank",
+            size="large",
+            variant="contained",
+            start_icon=mt.icons.exit_to_app,
+            onclick="login()",
+            style={"color": "#FFFFFF", "background": "#FF4B4B"},
+            href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
+            + clientId
+            + "&redirect_uri="
+            + redirectUri
+        #     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
+            + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
+        #     + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
+
+        )
+
+        mt.show(key="687")
+
+        credentials = {
+            "installed": {
+                "client_id": clientId,
+                "client_secret": clientSecret,
+                "redirect_uris": redirectUri,
+                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                "token_uri": "https://accounts.google.com/o/oauth2/token",
+            }
+        }
+
+        flow = Flow.from_client_config(
+            credentials,
+            scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
+            redirect_uri=redirectUri,
+        )
+
+        auth_url, _ = flow.authorization_url(prompt="consent")
+    else:
+#     if st.experimental_get_query_params():
         code = st.experimental_get_query_params()["code"][0]
 
         # Get access token
