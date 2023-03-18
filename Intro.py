@@ -58,7 +58,7 @@ if button2:
     
     # get access token
     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
-    r = requests.get(url)
+    r = requests.post(url)
     st.write(r.content)
 
 #     url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
