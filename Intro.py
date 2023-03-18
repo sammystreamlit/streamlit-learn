@@ -16,7 +16,7 @@ from googleapiclient.discovery import build
 
 # from googleapiclient import discovery
 
-
+state = st.session_state
 
 # import google-api-python-client
 
@@ -57,7 +57,6 @@ if button2:
 #     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
     #    url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     
-    # get access token
 #     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
     url="https://accounts.google.com/o/oauth2/token"
     body = {
@@ -68,13 +67,17 @@ if button2:
         "redirect_uri": redirectUri,
     }
     r = requests.post(url, json=body)
-#     st.write(r.content)
     response = json.loads(r.content)
-    st.write(response['access_token'])
+    state.access_token = response['access_token']
+    state.refresh_token = response['refresh_token']
+    state.id_token = response['id_token']
 
-#     response = (r.content['0'])
-#     token = response[0]
-    st.write(response)
+#     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
+    url = "https://www.googleapis.com/oauth2/v3/userinfo?client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
+    r = requests.get(url,params={'access_token': state.access_token})
+    st.write(r.status_code)
+    st.write(r.content)
+
     
 #     credentials = {
 #     "installed": {
@@ -102,7 +105,6 @@ if button2:
 #             credentials=credentials,
 #             cache_discovery=False,
     #    )
-#     st.write(str(r.content))
 
 #     url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
 #     r = requests.get(url,params={'access_token': access_token})
