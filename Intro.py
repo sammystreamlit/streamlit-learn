@@ -15,6 +15,10 @@ from googleapiclient.discovery import build
 
 state = st.session_state
 
+clientId = st.secrets['GOOGLE_CLIENT_ID']
+clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
+redirectUri = st.secrets['REDIRECT_URI']
+
 # def login():
 #     st.write("called login fn")
 
@@ -54,10 +58,6 @@ if st.experimental_get_query_params():
 # )
 
 mt = Elements()
-
-clientId = st.secrets['GOOGLE_CLIENT_ID']
-clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
-redirectUri = st.secrets['REDIRECT_URI']
 
 creds = {
     "installed": {
