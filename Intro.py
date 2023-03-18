@@ -24,6 +24,8 @@ from googleapiclient.errors import HttpError
 #     layout=layout, page_title="Google Search Console Connector", page_icon="🔌"
 # )
 
+mt = Elements()
+
 clientId = st.secrets['GOOGLE_CLIENT_ID']
 clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
 redirectUri = st.secrets['REDIRECT_URI']
@@ -107,7 +109,6 @@ st.markdown("")
 
 # st.markdown("")
 
-# mt = Elements()
 
 # button = st.button("get email")
 # if button:
