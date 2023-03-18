@@ -69,29 +69,29 @@ st.sidebar.title("hello")
 st.sidebar.image("logo.png", width=290)
 
 def sidebar():
-    css=f'''
-    [data-testid="stSidebarNav"] {{
-        position:absolute;
-        bottom: 0;
-        z-index: 1;
-    }}
-    [data-testid="stSidebarNav"] > ul {{
-        padding-top: 2rem;
-    }}
-    [data-testid="stSidebarNav"] > div {{
-        position:absolute;
-        top: 0;
-    }}
-    [data-testid="stSidebarNav"] > div > svg {{
-        transform: rotate(180deg) !important;
-    }}
-    [data-testid="stSidebarNav"] + div {{
-        overflow: scroll;
-        max-height: 66vh;
-    }}
-    '''
+#     css=f'''
+#     [data-testid="stSidebarNav"] {{
+#         position:absolute;
+#         bottom: 0;
+#         z-index: 1;
+#     }}
+#     [data-testid="stSidebarNav"] > ul {{
+#         padding-top: 2rem;
+#     }}
+#     [data-testid="stSidebarNav"] > div {{
+#         position:absolute;
+#         top: 0;
+#     }}
+#     [data-testid="stSidebarNav"] > div > svg {{
+#         transform: rotate(180deg) !important;
+#     }}
+#     [data-testid="stSidebarNav"] + div {{
+#         overflow: scroll;
+#         max-height: 66vh;
+#     }}
+#     '''
 
-    st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+#     st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
     
     with st.sidebar:
         st.title("Streamlit 101 💡")
