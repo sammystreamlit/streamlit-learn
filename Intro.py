@@ -65,8 +65,6 @@ def check_if_logged_in():
     else:
         state.logged_in = False
 
-st.sidebar.title("hello")
-st.sidebar.image("logo.png", width=290)
 
 def sidebar():
 #     css=f'''
@@ -94,7 +92,7 @@ def sidebar():
 #     st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
     
     with st.sidebar:
-        st.title("Streamlit 101 💡")
+        st.image("logo.png", width=290)
         check_if_logged_in()
         if not state.logged_in:
             mt.button(
