@@ -65,7 +65,8 @@ def check_if_logged_in():
     else:
         state.logged_in = False
 
-# st.sidebar.image("logo.png", width=290)
+st.sidebar.title("hello"
+st.sidebar.image("logo.png", width=290)
 
 def sidebar():
     with st.sidebar:
