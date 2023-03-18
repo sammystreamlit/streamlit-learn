@@ -57,10 +57,11 @@ if button:
     api_url = "https://www.googleapis.com/oauth2/v2/userinfo&token="
     api_url = api_url+code
     response = requests.get(api_url)
-    if response.status_code != 204:
-        st.write(response.json())
-    else: 
-        st.write(response)
+    st.write(response.status_code)
+#     if response.status_code != 204:
+#         st.write(response.json())
+#     else: 
+#         st.write(response)
 #     st.write(response.json())
 
 
