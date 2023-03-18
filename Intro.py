@@ -55,9 +55,10 @@ if button:
     code = st.experimental_get_query_params()["code"][0]
       #  st.session_state.my_token_input = code
     #     st.write(code)
-    api_url = "https://www.googleapis.com/oauth2/v2/userinfo&access_token="
+#     api_url = "https://www.googleapis.com/oauth2/v2/userinfo&access_token="
+    api_url = "https://www.googleapis.com/drive/v3/about&access_token="
     api_url = api_url+code
-    response = requests.post(api_url)
+    response = requests.get(api_url)
     st.write(response.status_code)
     st.write(response)
 #     if response.status_code != 204:
@@ -80,7 +81,9 @@ mt.button(
     + "&redirect_uri="
     + redirectUri
 #     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
-    + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
+#     + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
+    + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
+
 )
 
 mt.show(key="687")
