@@ -9,7 +9,6 @@ with st.sidebar:
     if state.logged_in and state.email:
         st.write("You're currently logged in as "+state.email)
     else:
-    if not state.logged_in:
         mt.button(
             "Sign-in with Google",
             target="_blank",
