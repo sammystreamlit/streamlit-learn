@@ -57,7 +57,7 @@ if button2:
     
     url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     r = requests.get(url,params={'access_token': access_token})
-    st.write(r.content)
+    st.write(r.status_code)
 
 
     #     service = build('people', 'v1', credentials=credentials)
