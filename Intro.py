@@ -92,7 +92,7 @@ def sidebar():
 #     st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
     
     with st.sidebar:
-        st.image("logo.png", width=290)
+        st.image("Logo.png", width=290)
         check_if_logged_in()
         if not state.logged_in:
             mt.button(
