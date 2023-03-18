@@ -59,10 +59,9 @@ if button2:
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
 
-     try:
-        people = people_service.people().connections().list('people/me', personFields='names,emailAddresses')
-     except HttpError as err:
-        print(err)
+    people = people_service.people().connections().list('people/me', personFields='names,emailAddresses')
+#      except HttpError as err:
+#         print(err)
 
     # try:
     #     service = build('people', 'v1', credentials=creds)
