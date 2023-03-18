@@ -9,8 +9,6 @@ from google_auth_oauthlib.flow import Flow
 import os
 from streamlit_elements import Elements
 
-###############################################################################
-
 # # The code below is for the layout of the page
 # if "widen" not in st.session_state:
 #     layout = "centered"
@@ -20,14 +18,6 @@ from streamlit_elements import Elements
 # st.set_page_config(
 #     layout=layout, page_title="Google Search Console Connector", page_icon="🔌"
 # )
-
-###############################################################################
-
-# row limit
-# RowCap = 25000
-
-
-###############################################################################
 
 # st.sidebar.image("logo.png", width=290)
 
@@ -78,7 +68,8 @@ mt.button(
     + clientId
     + "&redirect_uri="
     + redirectUri
-    + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
+#     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
+    + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
 )
 
 mt.show(key="687")
