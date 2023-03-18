@@ -54,12 +54,12 @@ if button2:
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     access_token = st.experimental_get_query_params()["code"][0]
     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
-    service = build('people', 'v1', credentials=creds)
+    service = build('people', 'v1', credentials=credentials)
 #     results = service.people()
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
 #     st.write(connections)
     
-    people = service.people().connections().list('people/me', personFields='names,emailAddresses')
+#     people = service.people().connections().list('people/me', personFields='names,emailAddresses')
     st.write(people)
 
 
