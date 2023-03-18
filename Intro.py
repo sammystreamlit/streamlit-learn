@@ -111,3 +111,28 @@ def sidebar():
             get_email()
             
 sidebar()
+
+css=f'''
+[data-testid="stSidebarNav"] {{
+    position:absolute;
+    bottom: 0;
+    z-index: 1;
+    background: {color};
+}}
+[data-testid="stSidebarNav"] > ul {{
+    padding-top: 2rem;
+}}
+[data-testid="stSidebarNav"] > div {{
+    position:absolute;
+    top: 0;
+}}
+[data-testid="stSidebarNav"] > div > svg {{
+    transform: rotate(180deg) !important;
+}}
+[data-testid="stSidebarNav"] + div {{
+    overflow: scroll;
+    max-height: 66vh;
+}}
+'''
+
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
