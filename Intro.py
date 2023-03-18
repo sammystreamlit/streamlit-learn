@@ -54,7 +54,12 @@ if button2:
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     access_token = st.experimental_get_query_params()["code"][0]
     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
-    discovery.build("people", "v1", credentials = credentials)
+    service = build('people', 'v1', credentials=creds)
+#     results = service.people()
+    connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
+    st.write(connections)
+
+#     discovery.build("people", "v1", credentials = credentials)
     
 #     credentials = google.oauth2.credentials.Credentials(
 #         access_token,
