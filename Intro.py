@@ -80,7 +80,7 @@ with st.sidebar:
             target="_blank",
             size="large",
             variant="contained",
-            start_icon=mt.icons.exit_to_app,
+#             start_icon=mt.icons.exit_to_app,
             onclick="login()",
             style={"color": "#FFFFFF", "background": "#FF4B4B"},
             href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
