@@ -12,13 +12,12 @@ import requests
 from google.oauth2.credentials import Credentials
 # from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-# from googleapiclient.errors import HttpError
-
-# from googleapiclient import discovery
 
 state = st.session_state
 
-# import google-api-python-client
+def login():
+    st.write("called login fn")
+
 
 # # The code below is for the layout of the page
 # if "widen" not in st.session_state:
