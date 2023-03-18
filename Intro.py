@@ -57,6 +57,8 @@ if button2:
     
     url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     r = requests.get(url,params={'access_token': access_token})
+    st.write(r.content)
+
 
     #     service = build('people', 'v1', credentials=credentials)
 #     results = service.people().connections().list(
@@ -71,7 +73,7 @@ if button2:
 #             name = names[0].get('displayName')
 #             st.write(name)
 #     r = requests.get('https://www.googleapis.com/oauth2/v3/userinfo',params={'access_token': access_token, access_type:offline, prompt:consent})
-    st.write(r.json())
+#     st.write(r.json())
 #     results = service.people()
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
 #     st.write(connections)
