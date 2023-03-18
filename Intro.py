@@ -48,56 +48,7 @@ creds = {
 
 
 # st.sidebar.image("logo.png", width=290)
-button2 = st.button("get email")
 
-if button2:
-    # If modifying these scopes, delete the file token.json.
-    SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
-    code = st.experimental_get_query_params()["code"][0]
-#     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
-    #    url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
-    
-#     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
-    url="https://accounts.google.com/o/oauth2/token"
-    body = {
-        "code": code,
-        "grant_type": "authorization_code",
-        "client_id": clientId,
-        "client_secret": clientSecret,
-        "redirect_uri": redirectUri,
-    }
-    r = requests.post(url, json=body)
-    response = json.loads(r.content)
-    state.access_token = response['access_token']
-    state.refresh_token = response['refresh_token']
-    state.id_token = response['id_token']
-
-#     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
-    url = "https://www.googleapis.com/oauth2/v3/userinfo?client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
-    r = requests.get(url,params={'access_token': state.access_token})
-    response = json.loads(r.content)
-    st.write(response['email'])
-#     st.write(r.status_code)
-#     st.write(r.content)
-
-    
-#     credentials = {
-#     "installed": {
-#     "client_id": clientId,
-#     "client_secret": clientSecret,
-#     "redirect_uris": [],
-#     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-#     "token_uri": "https://accounts.google.com/o/oauth2/token",
-#     }
-#     }
-
-#         flow = Flow.from_client_config(
-#             credentials,
-#             scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
-#             redirect_uri=redirectUri,
-#         )
-
-    
     
 #    flow.fetch_token(code=token)
 #         credentials = flow.credentials
@@ -195,10 +146,10 @@ if button2:
     # except HttpError as err:
     #     print(err)
 
-st.sidebar.markdown("")
-st.write("")
+# st.sidebar.markdown("")
+# st.write("")
 
-st.markdown("")
+# st.markdown("")
 
 # if "my_token_input" not in st.session_state:
 #     st.session_state["my_token_input"] = ""
@@ -240,63 +191,91 @@ st.markdown("")
 #         st.write(response)
 #     st.write(response.json())
 
-def get_user_info(credentials):
-    """Send a request to the UserInfo API to retrieve the user's information.
+# def get_user_info(credentials):
+#     """Send a request to the UserInfo API to retrieve the user's information.
 
-    Args:
-    credentials: oauth2client.client.OAuth2Credentials instance to authorize the
-                 request.
-    Returns:
-    User information as a dict.
-    """
-    user_info_service = build(
-      serviceName='oauth2', version='v2',
-      http=credentials.authorize(httplib2.Http()))
-    user_info = None
-    try:
-        user_info = user_info_service.userinfo().get().execute()
-    except:
-        logging.error('An error occurred')
-    if user_info and user_info.get('id'):
-        return user_info
-    else:
-        raise NoUserIdException()
+#     Args:
+#     credentials: oauth2client.client.OAuth2Credentials instance to authorize the
+#                  request.
+#     Returns:
+#     User information as a dict.
+#     """
+#     user_info_service = build(
+#       serviceName='oauth2', version='v2',
+#       http=credentials.authorize(httplib2.Http()))
+#     user_info = None
+#     try:
+#         user_info = user_info_service.userinfo().get().execute()
+#     except:
+#         logging.error('An error occurred')
+#     if user_info and user_info.get('id'):
+#         return user_info
+#     else:
+#         raise NoUserIdException()
+with st.sidebar:
+    mt.button(
+        "Sign-in with Google",
+        target="_blank",
+        size="large",
+        variant="contained",
+        start_icon=mt.icons.exit_to_app,
+        onclick="login()",
+        style={"color": "#FFFFFF", "background": "#FF4B4B"},
+        href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
+        + clientId
+        + "&redirect_uri="
+        + redirectUri
+    #     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
+        + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
+    #     + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
 
+    )
 
-mt.button(
-    "Sign-in with Google",
-    target="_blank",
-    size="large",
-    variant="contained",
-    start_icon=mt.icons.exit_to_app,
-    onclick="login()",
-    style={"color": "#FFFFFF", "background": "#FF4B4B"},
-    href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
-    + clientId
-    + "&redirect_uri="
-    + redirectUri
-#     + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
-    + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
-#     + "&scope=https://www.googleapis.com/auth/drive&access_type=offline&prompt=consent",
+    mt.show(key="687")
 
-)
-
-mt.show(key="687")
-
-credentials = {
-    "installed": {
-        "client_id": clientId,
-        "client_secret": clientSecret,
-        "redirect_uris": redirectUri,
-        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-        "token_uri": "https://accounts.google.com/o/oauth2/token",
+    credentials = {
+        "installed": {
+            "client_id": clientId,
+            "client_secret": clientSecret,
+            "redirect_uris": redirectUri,
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://accounts.google.com/o/oauth2/token",
+        }
     }
-}
 
-flow = Flow.from_client_config(
-    credentials,
-    scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
-    redirect_uri=redirectUri,
-)
+    flow = Flow.from_client_config(
+        credentials,
+        scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
+        redirect_uri=redirectUri,
+    )
 
-auth_url, _ = flow.authorization_url(prompt="consent")
+    auth_url, _ = flow.authorization_url(prompt="consent")
+    
+    button2 = st.button("get email")
+
+    if button2:
+        # If modifying these scopes, delete the file token.json.
+    #     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
+        code = st.experimental_get_query_params()["code"][0]
+
+        # Get access token
+        url="https://accounts.google.com/o/oauth2/token"
+        body = {
+            "code": code,
+            "grant_type": "authorization_code",
+            "client_id": clientId,
+            "client_secret": clientSecret,
+            "redirect_uri": redirectUri,
+        }
+        r = requests.post(url, json=body)
+        response = json.loads(r.content)
+        state.access_token = response['access_token']
+        state.refresh_token = response['refresh_token']
+        state.id_token = response['id_token']
+
+        # Get current user's email address
+        url = "https://www.googleapis.com/oauth2/v3/userinfo?client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
+        r = requests.get(url,params={'access_token': state.access_token})
+        response = json.loads(r.content)
+        state.email = response['email'])
+        st.write(response['email'])
