@@ -53,7 +53,7 @@ if button2:
     # If modifying these scopes, delete the file token.json.
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     access_token = st.experimental_get_query_params()["code"][0]
-    credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
+    credentials = Credentials(None, client_id=clientId, client_secret=clientSecret, access_type=offline, prompt=consent)
     service = build('people', 'v1', credentials=credentials)
     results = service.people().connections().list(
         resourceName='people/me',
