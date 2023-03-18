@@ -88,8 +88,8 @@ if button2:
 
 #     people = people_service.people().connections().list('people/me', personFields='names,emailAddresses')
     
-    authed_session = AuthorizedSession(credentials)
-    response = authed_session.get('https://www.googleapis.com/oauth2/v1/userinfo') 
+#     authed_session = AuthorizedSession(credentials)
+#     response = authed_session.get('https://www.googleapis.com/oauth2/v1/userinfo') 
 #      except HttpError as err:
 #         print(err)
 
