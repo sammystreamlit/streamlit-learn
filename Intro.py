@@ -15,9 +15,11 @@ from googleapiclient.discovery import build
 
 state = st.session_state
 
-def login():
-    st.write("called login fn")
+# def login():
+#     st.write("called login fn")
 
+if st.experimental_get_query_params():
+    st.write("logged in")
 
 # # The code below is for the layout of the page
 # if "widen" not in st.session_state:
