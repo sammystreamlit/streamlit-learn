@@ -61,6 +61,10 @@ mt = Elements()
 
 def login():
     st.write("tried to log in")
+            # st.write(st.session_state.my_token_input)
+    #st.session_state.my_token_received = True
+    code = st.experimental_get_query_params()["code"][0]
+      #  st.session_state.my_token_input = code
 
 mt.button(
     "Sign-in with Google",
