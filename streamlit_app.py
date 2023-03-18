@@ -29,13 +29,12 @@ from streamlit_elements import Elements
 
 ###############################################################################
 
-st.sidebar.image("logo.png", width=290)
+# st.sidebar.image("logo.png", width=290)
 
 st.sidebar.markdown("")
 
 st.write("")
 
-# Convert secrets from the TOML file to strings
 clientId = st.secrets['GOOGLE_CLIENT_ID']
 clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
 redirectUri = st.secrets['REDIRECT_URI']
