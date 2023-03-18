@@ -112,6 +112,9 @@ def sidebar():
             
 sidebar()
 
+color = '#262730'
+
+
 css=f'''
 [data-testid="stSidebarNav"] {{
     position:absolute;
