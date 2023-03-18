@@ -24,6 +24,10 @@ from googleapiclient.errors import HttpError
 #     layout=layout, page_title="Google Search Console Connector", page_icon="🔌"
 # )
 
+clientId = st.secrets['GOOGLE_CLIENT_ID']
+clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
+redirectUri = st.secrets['REDIRECT_URI']
+
 creds = {
     "installed": {
         "client_id": clientId,
@@ -84,9 +88,7 @@ if button2:
 
 st.sidebar.markdown("")
 st.write("")
-clientId = st.secrets['GOOGLE_CLIENT_ID']
-clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
-redirectUri = st.secrets['REDIRECT_URI']
+
 st.markdown("")
 
 # if "my_token_input" not in st.session_state:
