@@ -40,12 +40,24 @@ creds = {
     }
 }
 
+
 # st.sidebar.image("logo.png", width=290)
 button2 = st.button("get email")
 
 if button2:
     # If modifying these scopes, delete the file token.json.
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
+    access_token = st.experimental_get_query_params()["code"][0]
+
+    
+    credentials = google.oauth2.credentials.Credentials(
+        access_token,
+#         refresh_token = refresh_token,
+        token_uri = 'https://accounts.google.com/o/oauth2/token',
+        client_id = clientId,
+        client_secret = clientSecret
+    )
+
 
 #     creds = None
  
@@ -70,7 +82,7 @@ if button2:
 
 #     people = people_service.people().connections().list('people/me', personFields='names,emailAddresses')
     
-    authed_session = AuthorizedSession(creds)
+    authed_session = AuthorizedSession(credentials)
     response = authed_session.get('https://www.googleapis.com/oauth2/v1/userinfo') 
 #      except HttpError as err:
 #         print(err)
