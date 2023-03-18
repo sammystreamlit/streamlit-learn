@@ -60,9 +60,9 @@ if button:
     api_url="https://people.googleapis.com/v1/{resourceName=people/*}&personFields=emailAddresses&access_token="
     api_url = api_url+code
     response = requests.get(api_url)
-    st.write(response)
+    st.write(response.content)
     st.write(response.status_code)
-    st.write(response.json())
+#     st.write(response.json())
 #     if response.status_code != 204:
 #         st.write(response.json())
 #     else: 
