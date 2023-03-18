@@ -61,8 +61,8 @@ def get_email():
     r = requests.get(url,params={'access_token': state.access_token})
     response = json.loads(r.content)
     state.email = response['email']
-    logged_in = "You're currently logged in as "+state.email
-    st.success('logged_in', icon="✅")
+    logged_in_msg = "You're currently logged in as "+state.email
+    st.success(logged_in_msg, icon="✅")
 
 def check_if_logged_in():
     if st.experimental_get_query_params():
