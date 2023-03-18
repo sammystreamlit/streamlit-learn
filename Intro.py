@@ -234,6 +234,7 @@ def check_if_logged_in():
 #     else:
 #         raise NoUserIdException()
 with st.sidebar:
+    check_if_logged_in()
     if not state.logged_in:
         mt.button(
             "Sign-in with Google",
