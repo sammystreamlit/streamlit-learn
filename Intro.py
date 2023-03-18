@@ -58,7 +58,7 @@ if button2:
     
     # get access token
 #     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
-    
+    url="https://accounts.google.com/o/oauth2/token"
     body = {
         "code": code,
         "grant_type": "authorization_code",
