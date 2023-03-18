@@ -69,7 +69,7 @@ if button2:
     r = requests.post(url, json=body)
 #     st.write(r.content)
     response = str(r.content)
-    token = response['access_token']
+    token = response[0]
     st.write(token)
 #     st.write(str(r.content))
 
