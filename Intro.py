@@ -61,10 +61,10 @@ if button2:
     
     body = {
         "code": code,
-        "grant_type": "authorization_code"
+        "grant_type": "authorization_code",
         "client_id": clientId,
         "client_secret": clientSecret,
-        "redirect_uri": redirectUri
+        "redirect_uri": redirectUri,
     }
     r = requests.post(url, json=body)
     st.write(r.content)
