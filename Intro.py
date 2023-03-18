@@ -52,12 +52,12 @@ button2 = st.button("get email")
 if button2:
     # If modifying these scopes, delete the file token.json.
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
-    access_token = st.experimental_get_query_params()["code"][0]
+    code = st.experimental_get_query_params()["code"][0]
     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
     #    url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     
     # get access token
-    url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
+    url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
     r = requests.get(url)
     st.write(r.content)
 
