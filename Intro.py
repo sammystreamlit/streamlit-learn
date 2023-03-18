@@ -97,7 +97,7 @@ if button2:
 #             version="v3",
 #             credentials=credentials,
 #             cache_discovery=False,
-        )
+    #    )
 #     st.write(str(r.content))
 
 #     url = "https://www.googleapis.com/oauth2/v3/userinfo?response_type=code&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
