@@ -55,7 +55,7 @@ if button:
       #  st.session_state.my_token_input = code
     #     st.write(code)
     api_url = "https://www.googleapis.com/oauth2/v2/userinfo"
-    response = requests.post(api_url)
+    response = requests.get(api_url)
     st.write(response.json())
 
 
