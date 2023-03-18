@@ -41,11 +41,11 @@ redirectUri = st.secrets['REDIRECT_URI']
 
 st.markdown("")
 
-if "my_token_input" not in st.session_state:
-    st.session_state["my_token_input"] = ""
+# if "my_token_input" not in st.session_state:
+#     st.session_state["my_token_input"] = ""
 
-if "my_token_received" not in st.session_state:
-    st.session_state["my_token_received"] = False
+# if "my_token_received" not in st.session_state:
+#     st.session_state["my_token_received"] = False
 
 #     def charly_form_callback():
 #         # st.write(st.session_state.my_token_input)
@@ -59,13 +59,16 @@ st.markdown("")
 
 mt = Elements()
 
+def login():
+    st.write("tried to log in")
+
 mt.button(
     "Sign-in with Google",
     target="_blank",
     size="large",
     variant="contained",
     start_icon=mt.icons.exit_to_app,
-    onclick="none",
+    onclick="login()",
     style={"color": "#FFFFFF", "background": "#FF4B4B"},
     href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
     + clientId
