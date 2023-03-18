@@ -75,7 +75,8 @@ if button2:
 #     url="https://accounts.google.com/o/oauth2/token&grant_type=authorization_code&code="+code+"&client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri
     url = "https://www.googleapis.com/oauth2/v3/userinfo?client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
     r = requests.get(url,params={'access_token': state.access_token})
-    st.write(r.content['email'])
+    response = json.loads(r.content)
+    st.write(response['email'])
 #     st.write(r.status_code)
 #     st.write(r.content)
 
