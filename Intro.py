@@ -55,10 +55,14 @@ if button2:
     access_token = st.experimental_get_query_params()["code"][0]
     credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
     service = build('people', 'v1', credentials=credentials)
+    r = requests.get(
+        'https://www.googleapis.com/oauth2/v3/userinfo',
+        params={'access_token': access_token})
+    st.write(r.json())
 #     results = service.people()
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
 #     st.write(connections)
-    people = service.people().connections().list('people/me')
+#     people = service.people().connections().list('people/me')
 
 #     people = service.people().connections().list('people/me', personFields='names,emailAddresses')
 #     st.write(people)
