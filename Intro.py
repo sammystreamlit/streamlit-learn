@@ -5,6 +5,7 @@ import pandas as pd
 from apiclient import discovery
 from google_auth_oauthlib.flow import Flow
 import os
+import json
 from streamlit_elements import Elements
 import requests
 # from google.auth.transport.requests import Request
@@ -68,7 +69,9 @@ if button2:
     }
     r = requests.post(url, json=body)
 #     st.write(r.content)
-    response = (r.content['access_token'])
+    response = json.loads(r.content)
+
+#     response = (r.content['0'])
 #     token = response[0]
     st.write(response)
     
