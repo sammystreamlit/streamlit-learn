@@ -66,9 +66,12 @@ if button2:
 #         with open('token.json', 'w') as token:
 #             token.write(creds.to_json())
 
-    people_service = build('people', 'v1', credentials=creds)
+#     people_service = build('people', 'v1', credentials=creds)
 
-    people = people_service.people().connections().list('people/me', personFields='names,emailAddresses')
+#     people = people_service.people().connections().list('people/me', personFields='names,emailAddresses')
+    
+    authed_session = AuthorizedSession(creds)
+    response = authed_session.get('https://www.googleapis.com/oauth2/v1/userinfo') 
 #      except HttpError as err:
 #         print(err)
 
