@@ -277,5 +277,4 @@ with st.sidebar:
         url = "https://www.googleapis.com/oauth2/v3/userinfo?client_id="+clientId+"&client_secret="+clientSecret+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
         r = requests.get(url,params={'access_token': state.access_token})
         response = json.loads(r.content)
-        state.email = response['email'])
-        st.write(response['email'])
+        state.email = response['email']
