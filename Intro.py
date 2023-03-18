@@ -12,6 +12,11 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+
+from googleapiclient import discovery
+
+
+
 # import google-api-python-client
 
 # # The code below is for the layout of the page
@@ -48,15 +53,16 @@ if button2:
     # If modifying these scopes, delete the file token.json.
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     access_token = st.experimental_get_query_params()["code"][0]
-
+    credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
+    discovery.build("people", "v1", credentials = credentials)
     
-    credentials = google.oauth2.credentials.Credentials(
-        access_token,
-#         refresh_token = refresh_token,
-        token_uri = 'https://accounts.google.com/o/oauth2/token',
-        client_id = clientId,
-        client_secret = clientSecret
-    )
+#     credentials = google.oauth2.credentials.Credentials(
+#         access_token,
+# #         refresh_token = refresh_token,
+#         token_uri = 'https://accounts.google.com/o/oauth2/token',
+#         client_id = clientId,
+#         client_secret = clientSecret
+#     )
 
 
 #     creds = None
