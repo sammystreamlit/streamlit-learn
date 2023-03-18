@@ -53,9 +53,6 @@ with tab1:
     clientId = st.secrets['GOOGLE_CLIENT_ID']
     clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
     redirectUri = st.secrets['REDIRECT_URI']
-#     clientSecret = str(st.secrets["installed"]["client_secret"])
-#     clientId = str(st.secrets["installed"]["client_id"])
-#     redirectUri = str(st.secrets["installed"]["redirect_uris"][0])
 
     st.markdown("")
 
@@ -65,52 +62,52 @@ with tab1:
     if "my_token_received" not in st.session_state:
         st.session_state["my_token_received"] = False
 
-    def charly_form_callback():
-        # st.write(st.session_state.my_token_input)
-        st.session_state.my_token_received = True
-        code = st.experimental_get_query_params()["code"][0]
-        st.session_state.my_token_input = code
+#     def charly_form_callback():
+#         # st.write(st.session_state.my_token_input)
+#         st.session_state.my_token_received = True
+#         code = st.experimental_get_query_params()["code"][0]
+#         st.session_state.my_token_input = code
 
-    with st.sidebar.form(key="my_form"):
+#     with st.sidebar.form(key="my_form"):
 
-        st.markdown("")
+    st.markdown("")
 
-        mt = Elements()
+    mt = Elements()
 
-        mt.button(
-            "Sign-in with Google",
-            target="_blank",
-            size="large",
-            variant="contained",
-            start_icon=mt.icons.exit_to_app,
-            onclick="none",
-            style={"color": "#FFFFFF", "background": "#FF4B4B"},
-            href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
-            + clientId
-            + "&redirect_uri="
-            + redirectUri
-            + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
-        )
+    mt.button(
+        "Sign-in with Google",
+        target="_blank",
+        size="large",
+        variant="contained",
+        start_icon=mt.icons.exit_to_app,
+        onclick="none",
+        style={"color": "#FFFFFF", "background": "#FF4B4B"},
+        href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
+        + clientId
+        + "&redirect_uri="
+        + redirectUri
+        + "&scope=https://www.googleapis.com/auth/webmasters.readonly&access_type=offline&prompt=consent",
+    )
 
-        mt.show(key="687")
+    mt.show(key="687")
 
-        credentials = {
-            "installed": {
-                "client_id": clientId,
-                "client_secret": clientSecret,
-                "redirect_uris": [],
-                "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                "token_uri": "https://accounts.google.com/o/oauth2/token",
-            }
+    credentials = {
+        "installed": {
+            "client_id": clientId,
+            "client_secret": clientSecret,
+            "redirect_uris": [],
+            "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+            "token_uri": "https://accounts.google.com/o/oauth2/token",
         }
+    }
 
-        flow = Flow.from_client_config(
-            credentials,
-            scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
-            redirect_uri=redirectUri,
-        )
+    flow = Flow.from_client_config(
+        credentials,
+        scopes=["https://www.googleapis.com/auth/webmasters.readonly"],
+        redirect_uri=redirectUri,
+    )
 
-        auth_url, _ = flow.authorization_url(prompt="consent")
+    auth_url, _ = flow.authorization_url(prompt="consent")
 
 #         submit_button = st.form_submit_button(
 #             label="Access GSC API", on_click=charly_form_callback
