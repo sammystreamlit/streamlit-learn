@@ -59,8 +59,8 @@ if button2:
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
 #     st.write(connections)
     
-#     people = service.people().connections().list('people/me', personFields='names,emailAddresses')
-    st.write(people)
+    people = service.people().connections().list('people/me', personFields='names,emailAddresses')
+#     st.write(people)
 
 
 #     discovery.build("people", "v1", credentials = credentials)
