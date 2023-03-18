@@ -14,6 +14,7 @@ from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
 state = st.session_state
+state.logged_in = False
 
 clientId = st.secrets['GOOGLE_CLIENT_ID']
 clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
