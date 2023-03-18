@@ -53,8 +53,12 @@ if button2:
     # If modifying these scopes, delete the file token.json.
     SCOPES = ['https://www.googleapis.com/auth/contacts.readonly']
     access_token = st.experimental_get_query_params()["code"][0]
-    credentials = Credentials(None, client_id=clientId, client_secret=clientSecret, access_type=offline, prompt=consent)
-#     service = build('people', 'v1', credentials=credentials)
+    credentials = Credentials(None, client_id=clientId, client_secret=clientSecret)
+    
+    url = "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="+clientId+"&redirect_uri="+redirectUri+"&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent"
+    r = requests.get(url,params={'access_token': access_token})
+
+    #     service = build('people', 'v1', credentials=credentials)
 #     results = service.people().connections().list(
 #         resourceName='people/me',
 #         pageSize=10,
@@ -66,7 +70,7 @@ if button2:
 #         if names:
 #             name = names[0].get('displayName')
 #             st.write(name)
-    r = requests.get('https://www.googleapis.com/oauth2/v3/userinfo',params={'access_token': access_token, access_type:offline, prompt:consent})
+#     r = requests.get('https://www.googleapis.com/oauth2/v3/userinfo',params={'access_token': access_token, access_type:offline, prompt:consent})
     st.write(r.json())
 #     results = service.people()
 #     connections = service.people().connections().list(resourceName='people/me', personFields='names').execute()
