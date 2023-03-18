@@ -144,13 +144,13 @@ def get_user_info(credentials):
       http=credentials.authorize(httplib2.Http()))
     user_info = None
     try:
-    user_info = user_info_service.userinfo().get().execute()
+        user_info = user_info_service.userinfo().get().execute()
     except errors.HttpError, e:
-    logging.error('An error occurred: %s', e)
+        logging.error('An error occurred: %s', e)
     if user_info and user_info.get('id'):
-    return user_info
+        return user_info
     else:
-    raise NoUserIdException()
+        raise NoUserIdException()
 
 
 mt.button(
