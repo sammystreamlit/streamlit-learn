@@ -15,10 +15,12 @@ from googleapiclient.discovery import build
 
 state = st.session_state
 state.logged_in = False
+state.google_button_displayed = False
 
 clientId = st.secrets['GOOGLE_CLIENT_ID']
 clientSecret = st.secrets['GOOGLE_CLIENT_SECRET']
 redirectUri = st.secrets['REDIRECT_URI']
+hs_api_key = st.secrets['HS_API_KEY']
 
 # # The code below is for the layout of the page
 # if "widen" not in st.session_state:
@@ -47,6 +49,7 @@ def get_email():
     }
     r = requests.post(url, json=body)
     response = json.loads(r.content)
+    st.write(response)
     state.access_token = response['access_token']
     state.refresh_token = response['refresh_token']
     state.id_token = response['id_token']
@@ -65,44 +68,16 @@ def check_if_logged_in():
     else:
         state.logged_in = False
 
-
 def sidebar():
-#     css=f'''
-#     [data-testid="stSidebarNav"] {{
-#         position:absolute;
-#         bottom: 0;
-#         z-index: 1;
-#     }}
-#     [data-testid="stSidebarNav"] > ul {{
-#         padding-top: 2rem;
-#     }}
-#     [data-testid="stSidebarNav"] > div {{
-#         position:absolute;
-#         top: 0;
-#     }}
-#     [data-testid="stSidebarNav"] > div > svg {{
-#         transform: rotate(180deg) !important;
-#     }}
-#     [data-testid="stSidebarNav"] + div {{
-#         overflow: scroll;
-#         max-height: 66vh;
-#     }}
-#     '''
-
-#     st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
-    
     with st.sidebar:
         st.image("Logo.png")
-
-#         st.image("Logo.png", width=290)
         check_if_logged_in()
-        if not state.logged_in:
+        if not state.logged_in and not state.google_button_displayed:
             mt.button(
                 "Log in with Google",
                 target="_blank",
                 size="large",
                 variant="contained",
-    #             start_icon=mt.icons.exit_to_app,
                 onclick="login()",
                 style={"color": "#FFFFFF", "background": "#FF4B4B", "text-transform": "none"},
                 href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
@@ -111,23 +86,10 @@ def sidebar():
                 + redirectUri
                 + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
             )
-            
-#             mt.button(
-#                 "Log in with Google",
-#                 target="_blank",
-#                 size="large",
-#                 variant="contained",
-#     #             start_icon=mt.icons.exit_to_app,
-#                 onclick="login()",
-#                 style={"color": "#FFFFFF", "background": "#FF4B4B"},
-#                 href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id="
-#                 + clientId
-#                 + "&redirect_uri="
-#                 + redirectUri
-#                 + "&scope=https://www.googleapis.com/auth/userinfo.email&access_type=offline&prompt=consent",
-#             )
+            mt.show()
+            state.google_button_displayed = True
 
-            mt.show(key="687")
+            # mt.show(key="687")
 
             credentials = {
                 "installed": {
